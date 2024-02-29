@@ -1,0 +1,23 @@
+# Xcode
+.DS_Store
+*/.DS_Store
+*.swp
+xcuserdata/
+
+# Build products
+build/
+*.o
+*.LinkFileList
+*.hmap
+*.ipa
+*.xcarchive
+*.xctestrun
+DerivedData/
+
+# Miscellaneous
+*.log
+*.config
+
+# App specific
+/*.xcworkspace/
+/*.xcuserdatad/
