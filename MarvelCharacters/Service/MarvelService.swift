@@ -9,7 +9,7 @@ import CommonCrypto
 import Foundation
 
 // NOTE: These should not be stored on the client. Ideally they should be stored on a personal server which
-// will serve as an intermediary with the Marvel API 
+// will serve as an intermediary with the Marvel API
 private let publicKey = "fd9a8956c9379668d8a84f13c490752c"
 private let privateKey = "7cfbfdb18234d0ea4fd43fd2a3749041d65e7069"
 private let baseUrl = "https://gateway.marvel.com/"
