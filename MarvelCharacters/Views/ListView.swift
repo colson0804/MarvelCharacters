@@ -15,7 +15,13 @@ struct ListView<T: Identifiable & Hashable>: View {
             HStack(spacing: 20) {
                 ForEach(items, id: \.self) { item in
                     if let character = item as? Character {
-                        CharacterView(character: character)
+                        Button(action: {
+                            
+                            
+                        }, label: {
+                            CharacterView(character: character)
+                        })
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }
