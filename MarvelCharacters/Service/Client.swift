@@ -8,6 +8,7 @@
 import Foundation
 
 enum ApiError: Error {
+    case invalidUrl
     case parsingError
     case unauthorized
     case emptyResults

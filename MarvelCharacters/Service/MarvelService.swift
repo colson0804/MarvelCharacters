@@ -16,11 +16,10 @@ private let baseUrl = "https://gateway.marvel.com/"
 
 struct MarvelService {
     func getCharacters() async -> Result<[Character], ApiError> {
-        let timestamp = String(Date().timeIntervalSince1970)
-        let hash = (timestamp + privateKey + publicKey).md5
         let endpoint = "\(baseUrl)v1/public/characters"
-        // TODO: No force unwrapping
-        let url = URL(string: "\(endpoint)?apikey=\(publicKey)&ts=\(timestamp)&hash=\(hash)")!
+        guard let url = formattedUrl(from: endpoint) else {
+            return .failure(.invalidUrl)
+        }
         
         let result = await Client.shared.sendRequest(url: url, responseModel: DataWrapper<Character>.self)
         switch result {
@@ -32,11 +31,10 @@ struct MarvelService {
     }
     
     func getComics(for character: Character) async -> Result<[Comic], ApiError> {
-        let timestamp = String(Date().timeIntervalSince1970)
-        let hash = (timestamp + privateKey + publicKey).md5
         let endpoint = "\(baseUrl)v1/public/characters/\(character.id)/comics"
-        // TODO: No force unwrapping
-        let url = URL(string: "\(endpoint)?apikey=\(publicKey)&ts=\(timestamp)&hash=\(hash)")!
+        guard let url = formattedUrl(from: endpoint) else {
+            return .failure(.invalidUrl)
+        }
         
         let result = await Client.shared.sendRequest(url: url, responseModel: DataWrapper<Comic>.self)
         switch result {
@@ -45,6 +43,13 @@ struct MarvelService {
         case .failure(let error):
             return .failure(error)
         }
+    }
+    
+    private func formattedUrl(from baseUrl: String) -> URL? {
+        let timestamp = String(Date().timeIntervalSince1970)
+        let hash = (timestamp + privateKey + publicKey).md5
+        let params = "apikey=\(publicKey)&ts=\(timestamp)&hash=\(hash)"
+        return URL(string: "\(baseUrl)?\(params)")
     }
 }
 
