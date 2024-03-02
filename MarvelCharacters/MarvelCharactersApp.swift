@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
+
 struct MarvelCharactersApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CharacterListView()
         }
     }
 }

@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
+//  CharacterListViewModel.swift
 //  MarvelCharacters
 //
-//  Created by Craig Olson on 2/28/24.
+//  Created by Craig Olson on 3/2/24.
 //
 
 import SwiftUI
 
-extension ContentView {
+extension CharacterListView {
     class ViewModel: ObservableObject {
         @Published private(set) var characters: [Character] = []
         
@@ -25,25 +25,4 @@ extension ContentView {
             }
         }
     }
-}
-
-struct ContentView: View {
-    @ObservedObject private var viewModel = ViewModel()
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-            Text("Popular Characters")
-                .foregroundStyle(.white)
-            ListView(items: viewModel.characters)
-        }
-        .padding()
-        .onAppear {
-            viewModel.fetchCharacters()
-        }
-    }
-}
-
-#Preview {
-    return ContentView()
 }
