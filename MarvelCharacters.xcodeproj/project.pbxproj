@@ -25,6 +25,7 @@
 		A529502F2B93983D00B85D83 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529502E2B93983D00B85D83 /* CharacterListViewModel.swift */; };
 		A52950312B939A3100B85D83 /* ComicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52950302B939A3100B85D83 /* ComicListView.swift */; };
 		A52950332B93ADCF00B85D83 /* ComicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52950322B93ADCF00B85D83 /* ComicListViewModel.swift */; };
+		A52950352B93B95200B85D83 /* ComicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52950342B93B95200B85D83 /* ComicView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		A529502E2B93983D00B85D83 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		A52950302B939A3100B85D83 /* ComicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicListView.swift; sourceTree = "<group>"; };
 		A52950322B93ADCF00B85D83 /* ComicListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicListViewModel.swift; sourceTree = "<group>"; };
+		A52950342B93B95200B85D83 /* ComicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				A52950292B917B7E00B85D83 /* CharacterView.swift */,
 				A529502B2B917D1F00B85D83 /* ListView.swift */,
 				A52950302B939A3100B85D83 /* ComicListView.swift */,
+				A52950342B93B95200B85D83 /* ComicView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				A529502C2B917D1F00B85D83 /* ListView.swift in Sources */,
 				A52950312B939A3100B85D83 /* ComicListView.swift in Sources */,
 				A52950242B911C1900B85D83 /* Comic.swift in Sources */,
+				A52950352B93B95200B85D83 /* ComicView.swift in Sources */,
 				A5294FF02B90034B00B85D83 /* MarvelCharactersApp.swift in Sources */,
 				A52950222B910D7700B85D83 /* Character.swift in Sources */,
 				A529501D2B900A8D00B85D83 /* MarvelService.swift in Sources */,

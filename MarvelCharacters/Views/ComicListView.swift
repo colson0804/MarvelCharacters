@@ -18,10 +18,10 @@ struct ComicListView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
-            Text("Comics")
+            Text(viewModel.selectedCharacter.name)
                 .foregroundStyle(.white)
             ListView(items: viewModel.comics) { comic in
-                Text(comic.title)
+                ComicView(comic: comic)
             }
         }
         .padding()

@@ -9,7 +9,7 @@ import SwiftUI
 
 extension ComicListView {
     class ViewModel: ObservableObject {
-        private let selectedCharacter: Character
+        let selectedCharacter: Character
         @Published private(set) var comics: [Comic] = []
         
         init(character: Character) {
