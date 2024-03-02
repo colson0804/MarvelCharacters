@@ -12,7 +12,6 @@ struct ComicListView: View {
     
     init(character: Character) {
         viewModel = ViewModel(character: character)
-        viewModel.fetchComics()
     }
     
     var body: some View {
@@ -25,6 +24,9 @@ struct ComicListView: View {
             }
         }
         .padding()
+        .onAppear {
+            viewModel.fetchComics()
+        }
     }
 }
 
