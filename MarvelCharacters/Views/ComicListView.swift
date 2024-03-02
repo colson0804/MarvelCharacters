@@ -8,24 +8,27 @@
 import SwiftUI
 
 struct ComicListView: View {
+    @ObservedObject private var viewModel: ViewModel
     
+    init(character: Character) {
+        viewModel = ViewModel(character: character)
+        viewModel.fetchComics()
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
             Text("Comics")
                 .foregroundStyle(.white)
-//            ListView(items: viewModel.characters) { selectedItem in
-////                viewModel.selectCharacter(selectedItem)
-//            }
+            ListView(items: viewModel.comics) { comic in
+                Text(comic.title)
+            }
         }
         .padding()
-        .onAppear {
-//            viewModel.fetchCharacters()
-        }
     }
 }
 
 #Preview {
-    ComicListView()
+    let character = Character(id: 1, name: "Black Widow", description: "", thumbnail: Thumbnail(path: "", extension: "jpg"))
+    return ComicListView(character: character)
 }

@@ -16,7 +16,14 @@ struct CharacterListView: View {
                 Spacer()
                 Text("Popular Characters")
                     .foregroundStyle(.white)
-                ListView(items: viewModel.characters)
+                ListView(items: viewModel.characters) { character in
+                    NavigationLink(destination: {
+                        ComicListView(character: character)
+                    }, label: {
+                        CharacterView(character: character)
+                    })
+                    .buttonStyle(.plain)
+                }
             }
             .padding()
             .onAppear {

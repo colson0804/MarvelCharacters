@@ -24,6 +24,7 @@
 		A529502C2B917D1F00B85D83 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529502B2B917D1F00B85D83 /* ListView.swift */; };
 		A529502F2B93983D00B85D83 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529502E2B93983D00B85D83 /* CharacterListViewModel.swift */; };
 		A52950312B939A3100B85D83 /* ComicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52950302B939A3100B85D83 /* ComicListView.swift */; };
+		A52950332B93ADCF00B85D83 /* ComicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52950322B93ADCF00B85D83 /* ComicListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		A529502B2B917D1F00B85D83 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		A529502E2B93983D00B85D83 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		A52950302B939A3100B85D83 /* ComicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicListView.swift; sourceTree = "<group>"; };
+		A52950322B93ADCF00B85D83 /* ComicListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				A529502E2B93983D00B85D83 /* CharacterListViewModel.swift */,
+				A52950322B93ADCF00B85D83 /* ComicListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				A529501D2B900A8D00B85D83 /* MarvelService.swift in Sources */,
 				A529502A2B917B7E00B85D83 /* CharacterView.swift in Sources */,
 				A52950262B9120D100B85D83 /* Thumbnail.swift in Sources */,
+				A52950332B93ADCF00B85D83 /* ComicListViewModel.swift in Sources */,
 				A529501B2B90049500B85D83 /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,21 +7,15 @@
 
 import SwiftUI
 
-struct ListView<T: Identifiable & Hashable>: View {
-    var items: [T]
+struct ListView<Data: Identifiable & Hashable, Destination: View>: View {
+    var items: [Data]
+    var destination: (Data) -> Destination
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 20) {
                 ForEach(items, id: \.self) { item in
-                    if let character = item as? Character {
-                        NavigationLink(destination: {
-                            ComicListView()
-                        }, label: {
-                            CharacterView(character: character)
-                        })
-                        .buttonStyle(.plain)
-                    }
+                    destination(item)
                 }
             }
             .frame(height: UIScreen.main.bounds.height / 3)
@@ -30,5 +24,6 @@ struct ListView<T: Identifiable & Hashable>: View {
 }
 
 #Preview {
-    ListView<Character>(items: [])
+    let character = Character(id: 1, name: "Iron Man", description: "", thumbnail: Thumbnail(path: "", extension: "jpg"))
+    return ListView<Character, CharacterView>(items: [], destination: { _ in CharacterView(character: character) })
 }
