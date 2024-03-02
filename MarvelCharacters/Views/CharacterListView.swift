@@ -14,8 +14,18 @@ struct CharacterListView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 Spacer()
-                Text("Popular Characters")
-                    .foregroundStyle(.white)
+                HStack {
+                    Text("Popular Characters")
+                        .foregroundStyle(.white)
+                    Spacer()
+                    Button(action: {
+                        viewModel.fetchNextPage()
+                    }, label: {
+                        Text("Show More")
+                            .font(.system(size: 14))
+                    })
+                    .buttonStyle(.plain)
+                }
                 ListView(items: viewModel.characters) { character in
                     NavigationLink(destination: {
                         ComicListView(character: character)

@@ -17,8 +17,18 @@ struct ComicListView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
-            Text(viewModel.selectedCharacter.name)
-                .foregroundStyle(.white)
+            HStack {
+                Text(viewModel.selectedCharacter.name)
+                    .foregroundStyle(.white)
+                Spacer()
+                Button(action: {
+                    viewModel.fetchNextPage()
+                }, label: {
+                    Text("Show More")
+                        .font(.system(size: 14))
+                })
+                .buttonStyle(.plain)
+            }
             ListView(items: viewModel.comics) { comic in
                 ComicView(comic: comic)
             }

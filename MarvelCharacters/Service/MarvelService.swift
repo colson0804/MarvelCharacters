@@ -13,11 +13,12 @@ import Foundation
 private let publicKey = "fd9a8956c9379668d8a84f13c490752c"
 private let privateKey = "7cfbfdb18234d0ea4fd43fd2a3749041d65e7069"
 private let baseUrl = "https://gateway.marvel.com/"
+private let pageSize = 20
 
 struct MarvelService {
-    func getCharacters() async -> Result<[Character], ApiError> {
+    func getCharacters(pageOffset: Int = 0) async -> Result<[Character], ApiError> {
         let endpoint = "\(baseUrl)v1/public/characters"
-        guard let url = formattedUrl(from: endpoint) else {
+        guard let url = formattedUrl(from: endpoint, pageOffset: pageOffset) else {
             return .failure(.invalidUrl)
         }
         
@@ -30,9 +31,9 @@ struct MarvelService {
         }
     }
     
-    func getComics(for character: Character) async -> Result<[Comic], ApiError> {
+    func getComics(for character: Character, pageOffset: Int = 0) async -> Result<[Comic], ApiError> {
         let endpoint = "\(baseUrl)v1/public/characters/\(character.id)/comics"
-        guard let url = formattedUrl(from: endpoint) else {
+        guard let url = formattedUrl(from: endpoint, pageOffset: pageOffset) else {
             return .failure(.invalidUrl)
         }
         
@@ -45,11 +46,23 @@ struct MarvelService {
         }
     }
     
-    private func formattedUrl(from baseUrl: String) -> URL? {
+    private func formattedUrl(from baseUrl: String, pageOffset: Int) -> URL? {
+        guard var urlComponents = URLComponents(string: baseUrl) else {
+            return nil
+        }
+        
         let timestamp = String(Date().timeIntervalSince1970)
         let hash = (timestamp + privateKey + publicKey).md5
-        let params = "apikey=\(publicKey)&ts=\(timestamp)&hash=\(hash)"
-        return URL(string: "\(baseUrl)?\(params)")
+        let params = [
+            URLQueryItem(name: "apikey", value: publicKey),
+            URLQueryItem(name: "ts", value: timestamp),
+            URLQueryItem(name: "hash", value: hash),
+            URLQueryItem(name: "offset", value: String(pageOffset * pageSize)),
+            URLQueryItem(name: "limit", value: String(pageSize))
+        ]
+        urlComponents.queryItems = params
+        
+        return urlComponents.url
     }
 }
 
