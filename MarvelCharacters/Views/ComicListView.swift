@@ -29,8 +29,12 @@ struct ComicListView: View {
                 })
                 .buttonStyle(.plain)
             }
-            ListView(items: viewModel.comics) { comic in
-                ComicView(comic: comic)
+            if viewModel.comics.isEmpty {
+                Text("No comics found for \(viewModel.selectedCharacter.name)")
+            } else {
+                ListView(items: viewModel.comics) { comic in
+                    ComicView(comic: comic)
+                }
             }
         }
         .padding()
