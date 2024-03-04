@@ -19,7 +19,7 @@ struct CharacterListView: View {
                         .foregroundStyle(.white)
                     Spacer()
                     Button(action: {
-                        viewModel.fetchNextPage()
+                        viewModel.fetchCharacters(isInitialFetch: false)
                     }, label: {
                         Text("Show More")
                             .font(.system(size: 14))

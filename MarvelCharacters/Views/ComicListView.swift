@@ -22,7 +22,7 @@ struct ComicListView: View {
                     .foregroundStyle(.white)
                 Spacer()
                 Button(action: {
-                    viewModel.fetchNextPage()
+                    viewModel.fetchComics(isInitialFetch: false)
                 }, label: {
                     Text("Show More")
                         .font(.system(size: 14))

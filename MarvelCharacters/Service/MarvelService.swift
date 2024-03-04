@@ -15,7 +15,12 @@ private let privateKey = "7cfbfdb18234d0ea4fd43fd2a3749041d65e7069"
 private let baseUrl = "https://gateway.marvel.com/"
 private let pageSize = 20
 
-struct MarvelService {
+protocol MarvelServiceProtocol {
+    func getCharacters(pageOffset: Int) async -> Result<[Character], ApiError>
+    func getComics(for character: Character, pageOffset: Int) async -> Result<[Comic], ApiError>
+}
+
+struct MarvelService: MarvelServiceProtocol {
     func getCharacters(pageOffset: Int = 0) async -> Result<[Character], ApiError> {
         let endpoint = "\(baseUrl)v1/public/characters"
         guard let url = formattedUrl(from: endpoint, pageOffset: pageOffset) else {

@@ -11,35 +11,25 @@ extension ComicListView {
     class ViewModel: ObservableObject {
         let selectedCharacter: Character
         @Published private(set) var comics: [Comic] = []
-        private let service = MarvelService()
+        private let service: MarvelServiceProtocol
         private var currentPage = 0
         
-        init(character: Character) {
+        init(service: MarvelServiceProtocol = MarvelService(), character: Character) {
+            self.service = service
             self.selectedCharacter = character
         }
         
-        func fetchComics() {
-            Task {
-                let result = await service.getComics(for: selectedCharacter)
-                switch result {
-                case .success(let comics):
-                    DispatchQueue.main.async {
-                        self.comics = comics
-                    }
-                    currentPage += 1
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
-        
-        func fetchNextPage() {
+        func fetchComics(isInitialFetch: Bool = true) {
             Task {
                 let result = await service.getComics(for: selectedCharacter, pageOffset: currentPage)
                 switch result {
                 case .success(let comics):
                     DispatchQueue.main.async {
-                        self.comics.append(contentsOf: comics)
+                        if isInitialFetch {
+                            self.comics = comics
+                        } else {
+                            self.comics.append(contentsOf: comics)
+                        }
                     }
                     currentPage += 1
                 case .failure(let error):

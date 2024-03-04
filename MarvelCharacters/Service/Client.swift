@@ -7,15 +7,6 @@
 
 import Foundation
 
-enum ApiError: Error {
-    case invalidUrl
-    case parsingError
-    case unauthorized
-    case emptyResults
-    case serverError(code: Int)
-    case unknown
-}
-
 final class Client {
     static let shared = Client()
     private init() {}

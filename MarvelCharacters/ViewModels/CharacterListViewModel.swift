@@ -10,31 +10,24 @@ import SwiftUI
 extension CharacterListView {
     class ViewModel: ObservableObject {
         @Published private(set) var characters: [Character] = []
-        private let service = MarvelService()
+        private let service: MarvelServiceProtocol
         private var currentPage = 0
         
-        func fetchCharacters() {
-            Task {
-                let result = await service.getCharacters()
-                switch result {
-                case .success(let characters):
-                    DispatchQueue.main.async {
-                        self.characters = characters
-                    }
-                    currentPage += 1
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+        init(service: MarvelServiceProtocol = MarvelService()) {
+            self.service = service
         }
         
-        func fetchNextPage() {
+        func fetchCharacters(isInitialFetch: Bool = true) {
             Task {
                 let result = await service.getCharacters(pageOffset: currentPage)
                 switch result {
                 case .success(let characters):
                     DispatchQueue.main.async {
-                        self.characters.append(contentsOf: characters)
+                        if isInitialFetch {
+                            self.characters = characters
+                        } else {
+                            self.characters.append(contentsOf: characters)
+                        }
                     }
                     currentPage += 1
                 case .failure(let error):
