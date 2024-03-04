@@ -32,7 +32,7 @@ final class CharacterListViewModelTests: XCTestCase {
         
         mockService.getCharactersResult = .success(characters)
         
-        sut.fetchCharacters()
+        sut.fetchCharacters(isInitialFetch: true)
         
         let expectation = XCTestExpectation(description: "Characters fetched successfully")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -81,7 +81,7 @@ final class CharacterListViewModelTests: XCTestCase {
     func testFetchCharactersFailure() {
         mockService.getCharactersResult = .failure(.unauthorized)
         
-        sut.fetchCharacters()
+        sut.fetchCharacters(isInitialFetch: true)
         
         let expectation = XCTestExpectation(description: "Characters fetched successfully")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

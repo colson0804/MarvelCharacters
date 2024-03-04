@@ -19,7 +19,8 @@ extension ComicListView {
             self.selectedCharacter = character
         }
         
-        func fetchComics(isInitialFetch: Bool = true) {
+        func fetchComics(isInitialFetch: Bool) {
+            currentPage = isInitialFetch ? 0 : currentPage
             Task {
                 let result = await service.getComics(for: selectedCharacter, pageOffset: currentPage)
                 switch result {

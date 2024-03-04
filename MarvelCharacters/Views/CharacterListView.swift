@@ -37,7 +37,7 @@ struct CharacterListView: View {
             }
             .padding()
             .onAppear {
-                viewModel.fetchCharacters()
+                viewModel.fetchCharacters(isInitialFetch: true)
             }
         }
     }

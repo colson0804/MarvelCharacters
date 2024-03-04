@@ -33,7 +33,7 @@ final class ComicListViewModelTests: XCTestCase {
         
         mockService.getComicsResult = .success(comics)
         
-        sut.fetchComics()
+        sut.fetchComics(isInitialFetch: true)
         
         let expectation = XCTestExpectation(description: "Characters fetched successfully")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -82,7 +82,7 @@ final class ComicListViewModelTests: XCTestCase {
     func testFetchComicsFailure() {
         mockService.getCharactersResult = .failure(.unauthorized)
         
-        sut.fetchComics()
+        sut.fetchComics(isInitialFetch: true)
         
         let expectation = XCTestExpectation(description: "Comics fetched successfully")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

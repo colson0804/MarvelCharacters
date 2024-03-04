@@ -39,7 +39,7 @@ struct ComicListView: View {
         }
         .padding()
         .onAppear {
-            viewModel.fetchComics()
+            viewModel.fetchComics(isInitialFetch: true)
         }
     }
 }

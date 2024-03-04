@@ -17,7 +17,8 @@ extension CharacterListView {
             self.service = service
         }
         
-        func fetchCharacters(isInitialFetch: Bool = true) {
+        func fetchCharacters(isInitialFetch: Bool) {
+            currentPage = isInitialFetch ? 0 : currentPage
             Task {
                 let result = await service.getCharacters(pageOffset: currentPage)
                 switch result {
